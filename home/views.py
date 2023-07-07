@@ -21,6 +21,13 @@ def contact(request):
      message=request.POST.get('message')
      contact=Contact(name_surname=name_surname,email=email,phone=phone,message=message,date=datetime.today())
      contact.save()
+     mail=f'''
+     {email}
+     {phone}
+     {message}
+     '''
+     send_mail(name_surname,mail,'',['vystudent68@gmail.com'])
      messages.success(request,'Your Message has been submitted!!')
     return render(request,'contact.html')
+
     
